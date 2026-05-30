@@ -2,7 +2,11 @@ import Database from 'better-sqlite3'
 import path from 'path'
 import fs from 'fs'
 
-const DB_PATH = path.join(process.cwd(), 'data', 'portfolio.db')
+// Vercel serverless functions can only write to /tmp
+const DB_PATH =
+  process.env.NODE_ENV === 'production'
+    ? '/tmp/portfolio.db'
+    : path.join(process.cwd(), 'data', 'portfolio.db')
 
 declare global {
   // eslint-disable-next-line no-var
@@ -11,7 +15,9 @@ declare global {
 
 export function getDb(): Database.Database {
   if (!global._db) {
-    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true })
+    if (process.env.NODE_ENV !== 'production') {
+      fs.mkdirSync(path.dirname(DB_PATH), { recursive: true })
+    }
     global._db = new Database(DB_PATH)
     global._db.exec(`
       CREATE TABLE IF NOT EXISTS contact_submissions (
