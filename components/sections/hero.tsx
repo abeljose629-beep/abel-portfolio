@@ -118,7 +118,7 @@ export function Hero() {
           <Typewriter
             words={[
               'Frontend Developer',
-              'UI Developer',
+              'UI Engineer',
             ]}
           />
         </motion.div>
