@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(mkdir -p /Users/apple/Downloads/portfolio-website-build/data /Users/apple/Downloads/portfolio-website-build/app/api/contact /Users/apple/Downloads/portfolio-website-build/app/api/admin/login /Users/apple/Downloads/portfolio-website-build/app/api/admin/logout /Users/apple/Downloads/portfolio-website-build/app/admin/\\\\\\(protected\\\\\\) /Users/apple/Downloads/portfolio-website-build/app/admin/login)",
+      "Bash(npx tsc *)"
+    ],
+    "additionalDirectories": [
+      "/Users/apple/Downloads/portfolio-website-build"
+    ]
+  }
+}

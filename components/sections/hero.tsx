@@ -119,7 +119,6 @@ export function Hero() {
             words={[
               'Frontend Developer',
               'UI Engineer',
-              'Future AI Engineer',
             ]}
           />
         </motion.div>

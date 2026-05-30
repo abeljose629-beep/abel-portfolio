@@ -18,6 +18,8 @@ export function Contact() {
   const [values, setValues] = useState({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState<Errors>({})
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [serverError, setServerError] = useState('')
 
   function validate() {
     const next: Errors = {}
@@ -32,12 +34,30 @@ export function Contact() {
     return Object.keys(next).length === 0
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
     if (!validate()) return
-    setSubmitted(true)
-    setValues({ name: '', email: '', message: '' })
-    setTimeout(() => setSubmitted(false), 4000)
+    setServerError('')
+    setLoading(true)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setServerError(data.error || 'Something went wrong. Please try again.')
+        return
+      }
+      setSubmitted(true)
+      setValues({ name: '', email: '', message: '' })
+      setTimeout(() => setSubmitted(false), 4000)
+    } catch {
+      setServerError('Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -138,12 +158,18 @@ export function Contact() {
                       </p>
                     )}
                   </div>
+                  {serverError && (
+                    <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                      {serverError}
+                    </p>
+                  )}
                   <Button
                     type="submit"
                     size="lg"
                     className="w-full rounded-full glow"
+                    disabled={loading}
                   >
-                    Send Message
+                    {loading ? 'Sending…' : 'Send Message'}
                     <Send className="size-4" />
                   </Button>
                 </motion.form>
