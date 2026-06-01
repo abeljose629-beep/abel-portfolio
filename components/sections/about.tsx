@@ -20,7 +20,7 @@ export function About() {
           <div className="space-y-5 lg:col-span-3">
             {profile.bio.map((paragraph, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <p className="leading-relaxed text-muted-foreground">
+                <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
                   {paragraph}
                 </p>
               </Reveal>

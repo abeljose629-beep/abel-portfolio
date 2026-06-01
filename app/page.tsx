@@ -15,19 +15,21 @@ export default function Home() {
   return (
     <>
       <PageLoader />
-      <CursorGradient />
-      <Navbar />
-      <main className="relative">
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Learning />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
+      <div className="page-content">
+        <CursorGradient />
+        <Navbar />
+        <main className="relative">
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Learning />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

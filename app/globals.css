@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+html[data-loading] .page-content {
+  visibility: hidden;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
