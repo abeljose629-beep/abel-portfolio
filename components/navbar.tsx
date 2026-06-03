@@ -32,7 +32,7 @@ export function Navbar() {
       >
         <a
           href="#home"
-          className="font-mono text-lg font-bold tracking-tight"
+          className="font-mono text-2xl font-bold tracking-tight"
         >
           <span className="text-gradient">Abel </span>
           <span className="text-foreground text-gradient">Jose</span>
